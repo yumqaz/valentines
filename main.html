@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Для тебя ❤️</title>
+
+    <style>
+        /* Стили для полос */
+.pattern-bar {
+    position: fixed; /* Чтобы они не уезжали при скролле */
+    left: 0;
+    width: 100%;
+    height: 30px; /* Толщина полоски */
+    z-index: 1000;
+    
+    /* Рисуем клетку */
+    background-color: #ffffff;
+    background-image: 
+        linear-gradient(90deg, rgba(255, 183, 197, 0.5) 50%, transparent 50%),
+        linear-gradient(rgba(255, 183, 197, 0.5) 50%, transparent 50%);
+    background-size: 30px 30px; 
+    box-shadow: 0 2px 10px rgba(255, 183, 197, 0.5);
+}
+
+.bar-top { top: 0; border-bottom: 3px solid #ff9eb5; }
+.bar-bottom { bottom: 0; border-top: 3px solid #ff9eb5; }
+
+        body {
+            text-align: center; 
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            min-height: 100vh; 
+            margin: 0;
+            padding: 180px 20px 250px; 
+            overflow-y: auto;
+            position: relative; 
+            
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+
+            background-color: #fff0f3; 
+            background-image: 
+                radial-gradient(#ffb7c5 20%, transparent 20%),
+                radial-gradient(#ffb7c5 20%, transparent 20%);
+            background-size: 60px 60px;          
+            background-position: 0 0, 30px 30px; 
+            background-attachment: fixed;
+            animation: slide-background 20s linear infinite;
+        }
+
+        @keyframes slide-background {
+            from { background-position: 0 0, 30px 30px; }
+            to { background-position: 600px 600px, 630px 630px; } 
+        }
+
+        h1 {
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+            font-weight: 700; 
+            color: #ff4d6d;   
+            font-size: 1.8rem;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(255, 183, 197, 0.5);
+        }
+
+        .letter-window {
+            background: white;
+            border: 4px solid #ffb7c5;
+            padding: 40px 30px; 
+            border-radius: 45px; 
+            box-shadow: 0 15px 35px rgba(255, 183, 197, 0.6);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 90%;
+            max-width: 420px; 
+            position: relative;
+            z-index: 20; 
+        }
+
+        .top-character {
+            position: absolute;
+            /* ИСПРАВЛЕНО: убрал пробелы в значении */
+            top: -160px; 
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;       
+            z-index: 30;
+            filter: drop-shadow(0px 10px 10px rgba(0,0,0,0.15));
+        }
+
+        .main-gif { 
+            width: 280px; 
+            border-radius: 30px; 
+            border: 4px solid #fff0f3;
+            margin: 25px 0; 
+            box-shadow: 0 8px 20px rgba(255, 183, 197, 0.4);
+        }
+
+        .extra-text {
+            color: #ff85a2;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin: 20px 0;
+            width: 100%;
+        }
+
+        /* --- ОБНОВЛЕННЫЕ СТИЛИ ДЛЯ БОКОВЫХ ГИФОК --- */
+       /* --- ОБНОВЛЕННЫЕ СТИЛИ ДЛЯ БОКОВЫХ ГИФОК --- */
+.side-gif {
+    position: absolute;
+    /* Ставим нормальный размер для компа */
+    width: 300px; /* Можешь поиграться: 250px, 350px... */
+    height: auto; /* Чтобы пропорции не ломались */
+    filter: drop-shadow(0px 5px 10px rgba(255, 183, 197, 0.6));
+    z-index: 15;
+    pointer-events: none; /* ВАЖНО: чтобы сквозь гифки можно было кликать по сайту */
+}
+
+/* Приклеиваем левые гифки */
+.pos-left {
+    /* Вместо left: 5% ставим фиксированный отступ */
+    left: 10px; 
+    /* Немного сдвигаем их влево трансформацией, чтобы компенсировать поворот */
+    transform: rotate(-10deg) translateX(-20px);
+}
+
+/* Приклеиваем правые гифки */
+.pos-right {
+    /* Вместо right: 5% ставим фиксированный отступ */
+    right: 10px;
+    /* Сдвигаем вправо */
+    transform: rotate(10deg) translateX(20px);
+}
+
+/* --- АДАПТИВ (ВАЖНО ОБНОВИТЬ) --- */
+@media (max-width: 950px) {
+    .side-gif {
+        /* На планшетах и телефонах делаем их меньше, а не больше! */
+        width: 150px !important; 
+        opacity: 0.7; /* Делаем полупрозрачными, чтобы не мешали */
+        z-index: 1; /* Убираем на задний план */
+    }
+    
+    /* На маленьких экранах прижимаем их еще сильнее к краям */
+    .pos-left { left: -20px; }
+    .pos-right { right: -20px; }
+}
+    </style>
+</head>
+<body>
+
+    <div class="letter-window">
+        <img src="gifs/kawaii-cute.gif" class="top-character" alt="Персонаж">
+
+        <h1>Cкажи мне...</h1>
+        
+
+        <div class="extra-text">
+            Пидор на крыльце, скажи <br><br>
+            Как нашел ведро кончи
+        </div>
+
+        <img src="gifs/nekomimiyu-mii.gif" style="width: 200px; margin: 40px 0;">
+
+        <div class="extra-text">
+            Кто бы на анале <br>
+            Поставлял пидорам дилдаки
+            <br><br><br><br><br>
+            Мне впадлу дальше текст редачить
+        </div>
+         <div class="extra-text">
+            🥸🥸 <br><br> (умный текст)
+        </div>
+    </div>
+
+    <img src="gifs/praise-idol.gif" class="side-gif pos-left " style="top: 1470px;">
+
+    <img src="gifs/super-sonico-sonico.gif" 
+         class="side-gif pos-left" style="top: 400px;" width="300px">
+
+    <img src="gifs/kawaii-random.gif" 
+         class="side-gif pos-right" style="top: 550px; width: 250px;">
+
+    <img src="gifs/୨ৎ.jpg" 
+         class="side-gif pos-left" style="top: 800px; width: 300px;">
+
+         <img src="gifs/mitsuri-demon-slayer.gif" 
+         class="side-gif pos-right" style="top: 1100px; width: 300px;">
+
+
+
+<div class="pattern-bar bar-top"></div>
+
+<div class="pattern-bar bar-bottom"></div>
+
+</body>
+</html>
