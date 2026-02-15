@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for YOU </title>
+
+    <style>
+        /* Стили для полос */
+.pattern-bar {
+    position: fixed; /* Чтобы они не уезжали при скролле */
+    left: 0;
+    width: 100%;
+    height: 30px; /* Толщина полоски */
+    z-index: 1000;
+    
+    /* Рисуем клетку */
+    background-color: #ffffff;
+    background-image: 
+        linear-gradient(90deg, #a1ca9c 50%, transparent 50%),
+        linear-gradient(#c6eec2 50%, transparent 50%);
+    background-size: 30px 30px; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.bar-top { top: 0; border-bottom: 3px solid #c6eec2; }
+.bar-bottom { bottom: 0; border-top: 3px solid #c6eec2; }
+
+        body {
+            text-align: center; 
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            min-height: 100vh; 
+            margin: 0;
+            padding: 180px 20px 250px; 
+            overflow-y: auto;
+            position: relative; 
+            
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+
+            background-color: #c6eec2;
+            background-image: 
+                radial-gradient(#a1ca9c 20%, transparent 20%),
+                radial-gradient(#a1ca9c 20%, transparent 20%);
+            background-size: 60px 60px;          
+            background-position: 0 0, 30px 30px; 
+            background-attachment: fixed;
+            animation: slide-background 20s linear infinite;
+        }
+
+        @keyframes slide-background {
+            from { background-position: 0 0, 30px 30px; }
+            to { background-position: 600px 600px, 630px 630px; } 
+        }
+
+        h1 {
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+            font-weight: 700; 
+            color: #9abd97;   
+            font-size: 1.8rem;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(255, 183, 197, 0.5);
+        }
+
+        .letter-window {
+            background: white;
+            border: 4px solid #a1ca9c;
+            padding: 40px 30px; 
+            border-radius: 45px; 
+            box-shadow: 0 15px 35px rgba(255, 183, 197, 0.6);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 90%;
+            max-width: 420px; 
+            position: relative;
+            z-index: 20; 
+        }
+
+        .top-character {
+            position: absolute;
+            /* ИСПРАВЛЕНО: убрал пробелы в значении */
+            top: -160px; 
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;       
+            z-index: 30;
+            filter: drop-shadow(0px 10px 10px rgba(0,0,0,0.15));
+        }
+
+        .main-gif { 
+            width: 280px; 
+            border-radius: 30px; 
+            border: 4px solid #fff0f3;
+            margin: 25px 0; 
+            box-shadow: 0 8px 20px rgba(255, 183, 197, 0.4);
+        }
+
+        .extra-text {
+            color: #9abd97;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin: 20px 0;
+            width: 100%;
+        }
+
+        /* --- ОБНОВЛЕННЫЕ СТИЛИ ДЛЯ БОКОВЫХ ГИФОК --- */
+        .side-gif {
+            position: absolute;
+            width: 120px;
+            /* Убрал рамки и скругления, добавил мягкую тень по контуру */
+            filter: drop-shadow(0px 5px 10px rgba(255, 183, 197, 0.6));
+            z-index: 15;
+        }
+
+        .pos-left {
+            left: 5%;
+            transform: rotate(-10deg);
+        }
+        .pos-right {
+            right: 5%;
+            transform: rotate(10deg);
+        }
+
+        /* --- АДАПТИВ --- */
+        @media (max-width: 950px) {
+            /* Скрываем гифки чуть раньше, чтобы они не налезали на узкое окно */
+            .side-gif {
+               width: 200px !important; /* Делаем их совсем маленькими */
+        z-index: 10; /* Уводим на задний план, чтобы не мешали кликать */
+        opacity: 1; /* Можно сделать полупрозрачными */
+            }
+        }
+
+        @media (max-width: 600px) {
+            body { padding-top: 140px; padding-bottom: 100px; }
+            .top-character { width: 180px; top: -130px; }
+            .main-gif { width: 100%; }
+            h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="letter-window">
+        <img src="gifs/kawaii-cute.gif" 
+        class="top-character" alt="Персонаж" style="width: 240px;">
+
+        <h1>С днем святого Валентина! </h1>
+        
+
+        <div class="extra-text">
+            Поздравляю тебя с твоим самым любимым праздником, котенок <br><br>
+            Это небольшой сайтик который я наверстал в качестве валентинки.
+        </div>
+
+        <img src="gifs/hulkenberg.gif" style="width: 200px; margin: 10px 0;">
+
+        <div class="extra-text">
+            Очень важный текст <br>
+            Для отвлечения внимания.
+            <br><br><br>
+            Я довольно часто напоминаю тебе, что люблю тебя, но только словесно. Знаю, что ты не очень любишь о таком говорить, поэтому пусть эта маленькая фигнюшка будет одним из немногих 
+            материальных напоминаний о моих чувствах к тебе. А еще извини, если я могу казаться остраненным или холодным, я этого не замечаю и уж тем более не делаю намеренно, 
+            просто вот такой вот я мудила
+        </div>
+         <div class="extra-text">
+            Люблю, целую, обнимаю, обожаю ваще да 💚
+        </div>
+    </div>
+
+    <img src="gifs/praise-idol.gif" class="side-gif pos-left " style="top: 1495px;">
+    <img src="gifs/lucia.gif" class="side-gif pos-left" style="top: 400px; width: 400px; left: -1px;">
+
+    <img src="gifs/princess.gif" 
+         class="side-gif pos-right" style="top: 550px; width: 250px; right: -10px;">
+
+    <img src="gifs/winx-winx-club.gif" 
+         class="side-gif pos-left" style="top: 800px; width: 400px; left: -1px;">
+
+         <img src="gifs/winxa.gif" 
+         class="side-gif pos-right" style="top: 1100px; width: 400px; right: -10px;">
+
+    <img src="gifs/photo_2026-02-15_02-34-21.jpg"
+         class="side-gif" style="top: 1460px;">
+
+
+<div class="pattern-bar bar-top"></div>
+
+<div class="pattern-bar bar-bottom"></div>
+
+</body>
+</html>
