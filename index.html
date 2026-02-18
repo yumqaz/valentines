@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Любимой маме </title>
+
+    <style>
+        body {
+            text-align: center; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+            
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+
+            background-color: #ffffff; 
+            background-image: 
+                radial-gradient(#fadadd 20%, transparent 20%),
+                radial-gradient(#fadadd 20%, transparent 20%);
+            background-size: 60px 60px;          
+            background-position: 0 0, 30px 30px; 
+            animation: slide-background 20s linear infinite;
+        }
+
+        @keyframes slide-background {
+            from { background-position: 0 0, 30px 30px; }
+            to { background-position: 600px 600px, 630px 630px; } 
+        }
+
+        h1 {
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+            font-weight: 700; 
+            color:  #ecc1c5;   
+            font-size: 1.8rem;
+            margin: 15px 0;
+            text-shadow: 2px 2px 4px rgba(255, 183, 197, 0.5);
+        }
+
+        .letter-window {
+            background: white;
+            border: 4px solid #ecc1c5;
+            padding: 35px; 
+            border-radius: 45px; 
+            box-shadow: 0 15px 35px rgba(255, 183, 197, 0.6);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;
+            max-width: 90%;
+            position: relative;
+            overflow: visible; 
+        }
+
+        .top-character {
+            position: absolute;
+            top: -145px;         
+            right: 10px;
+            width: 400px;       
+            z-index: 20;
+            filter: drop-shadow(0px 10px 10px rgba(0,0,0,0.15));
+            /* Движение полностью убрано */
+        }
+
+        .heart-main { font-size: 60px; animation: pulse 1s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+
+        .main-gif { 
+            width: 250px; 
+            border-radius: 30px; 
+            border: 4px solid #fff0f3;
+            margin: 15px 0; 
+            box-shadow: 0 8px 20px rgba(255, 183, 197, 0.4);
+        }
+
+        .btns { display: flex; gap: 20px; margin-top: 15px; }
+        
+        button { 
+            font-family: inherit; 
+            padding: 15px 30px; 
+            font-size: 18px; 
+            font-weight: bold;
+            border-radius: 50px; 
+            border: none; 
+            cursor: pointer; 
+            transition: all 0.3s ease; 
+        }
+
+        #yesBtn { 
+            background: #ecc1c5; 
+            color: white; 
+            box-shadow: 0 8px 25px #ecc1c5;
+        }
+        #yesBtn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 30px #ecc1c5;
+        }
+
+        #noBtn { 
+            background: #adb5bd; 
+            color: white; 
+            box-shadow: 0 8px 25px #ecc1c5;
+            /* Убираем плавность перемещения, чтобы кнопку было невозможно "поймать" в полете */
+            transition: none; 
+        }
+
+        @media (max-width: 600px) {
+    /* ... другие стили ... */
+}
+
+    /* Увеличиваем персонажа и поднимаем его выше */
+    .top-character { 
+        width: 320px; 
+        top: -365px; 
+        right: 100px;
+    }
+
+    /* Увеличиваем гифку с котиками */
+    .main-gif { 
+        width: 200px; 
+        border-radius: 20px; 
+    }
+
+    /* Делаем шрифт заголовка чуть крупнее и читабельнее */
+    h1 { 
+        font-size: 1.3rem; 
+        padding: 0 10px;
+    }
+
+    .heart-main { font-size: 45px; }
+
+    /* Кнопки делаем удобными для нажатия пальцем */
+    button { 
+        padding: 15px 35px; 
+        font-size: 18px; 
+    }
+
+    /* Фикс для убегающей кнопки: чтобы она не улетала за экран на мобилке */
+    #noBtn {
+        font-size: 14px; /* Делаем чуть меньше, чтобы сложнее было попасть */
+        padding: 10px 20px;
+    }
+    </style>
+</head>
+<body>
+
+    <div class="letter-window">
+        <img src="gifs/photo_2026-02-17_19-37-30-removebg-preview.png" class="top-character" alt="Персонаж" > 
+
+        <h1>Принимаешь наше запоздавшее поздравление?</h1>
+        
+        <img src="gifs/strawberry-shortcake-strawberry.gif" class="main-gif" alt="Валентинка">
+
+        <div class="btns">
+            <button id="yesBtn" onclick="celebrate()">ДА</button>
+            <button id="noBtn">НЕТ</button>
+        </div>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+
+        // Функция для перемещения кнопки
+        const moveBtn = () => {
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        };
+
+        // Убегает при наведении
+        noBtn.addEventListener('mouseover', moveBtn);
+        
+        // Убегает при попытке клика (нажатии)
+        noBtn.addEventListener('click', moveBtn);
+
+        function celebrate() {
+            window.location.href = 'main.html';
+        }
+    </script>
+</body>
+</html>
